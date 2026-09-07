@@ -251,3 +251,47 @@ html[lang="kk"] .hero-quote,html[lang="kk"] .soft-card h3,html[lang="kk"] .soft-
   .note-icon{font-size:21px}
   .language-menu{min-width:136px;top:calc(100% + 8px)}
 }
+
+/* Mobile centering fix — keep every content card visually centered */
+@media (max-width:760px){
+  .section-shell{
+    padding-left:max(18px,env(safe-area-inset-left));
+    padding-right:max(18px,env(safe-area-inset-right));
+  }
+
+  .hero-content,
+  .soft-card,
+  .date-layout,
+  .center-copy,
+  .place-card,
+  .final-inner{
+    width:100%;
+    max-width:100%;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .hero-content{max-width:680px}
+  .soft-card{max-width:720px}
+  .date-layout,.place-card{max-width:980px}
+  .center-copy{max-width:900px}
+  .final-inner{max-width:650px}
+
+  .soft-card,
+  .calendar,
+  .place-card{
+    transform:none;
+  }
+}
+
+@media (max-width:430px){
+  .section-shell{
+    padding-left:max(16px,env(safe-area-inset-left));
+    padding-right:max(16px,env(safe-area-inset-right));
+  }
+
+  .soft-card{
+    padding-left:22px;
+    padding-right:22px;
+  }
+}
