@@ -13,3 +13,9 @@ assets/music-ru.mp3 — русская версия
 Google Maps: https://maps.app.goo.gl/p561cBBPd6PMz1nu6
 
 Для публикации можно загрузить всю папку на Netlify / GitHub Pages / любой статический хостинг.
+
+
+Update v3:
+- Added lightweight falling autumn leaves.
+- Added scroll-driven bride/groom meeting scene using assets/groom.png and assets/bride.png.
+- Mobile-safe sizing and reduced-motion fallback included.

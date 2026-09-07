@@ -15,6 +15,7 @@
   <audio id="bgMusic" loop preload="auto"></audio>
 
   <div class="grain" aria-hidden="true"></div>
+  <div class="falling-leaves" id="fallingLeaves" aria-hidden="true"></div>
 
   <section class="intro" id="intro" aria-label="Opening invitation">
     <div class="intro-backdrop"></div>
@@ -86,6 +87,23 @@
         <p class="section-kicker" data-i18n="inviteKicker">Дорогие родные и близкие</p>
         <h3 data-i18n="inviteTitle">Приглашаем вас разделить с нами радость этого особенного дня</h3>
         <p data-i18n="inviteText">Ваше присутствие сделает наш праздник ещё теплее, светлее и счастливее.</p>
+      </div>
+    </section>
+
+    <section class="couple-story section-shell" id="coupleStory" aria-label="Bride and groom animation">
+      <div class="couple-sticky">
+        <div class="couple-copy reveal">
+          <p class="section-kicker" data-i18n="coupleKicker">Две истории</p>
+          <h3 data-i18n="coupleTitle">Теперь — одна</h3>
+          <p data-i18n="coupleText">И в этот день мы делаем ещё один шаг навстречу друг другу.</p>
+        </div>
+        <div class="couple-stage" aria-hidden="true">
+          <img class="couple-figure groom-figure" id="groomFigure" src="assets/groom.png" alt="" draggable="false">
+          <img class="couple-figure bride-figure" id="brideFigure" src="assets/bride.png" alt="" draggable="false">
+          <div class="couple-heart" id="coupleHeart">♥</div>
+          <div class="couple-ground"></div>
+        </div>
+        <div class="couple-scroll-hint" data-i18n="coupleScroll">Листайте — они встретятся</div>
       </div>
     </section>
 

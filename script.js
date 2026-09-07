@@ -6,6 +6,7 @@ const translations = {
     musicOn:'Музыка играет', musicOff:'Музыка выключена', scroll:'Листайте ниже',
     inviteKicker:'Дорогие родные и близкие', inviteTitle:'Приглашаем вас разделить с нами радость этого особенного дня',
     inviteText:'Ваше присутствие сделает наш праздник ещё теплее, светлее и счастливее.',
+    coupleKicker:'Две истории', coupleTitle:'Теперь — одна', coupleText:'И в этот день мы делаем ещё один шаг навстречу друг другу.', coupleScroll:'Листайте — они встретятся',
     dateKicker:'Сохраните дату', dateTitle:'Сентябрь 2026', timeLabel:'Начало', monthYear:'СЕНТЯБРЬ 2026',
     weekdays:['ПН','ВТ','СР','ЧТ','ПТ','СБ','ВС'], countKicker:'До нашей встречи', days:'дней', hours:'часов', minutes:'минут', seconds:'секунд',
     placeKicker:'Место проведения', venue:'Тойхана «Нур»', placeNote:'Откройте удобную карту, чтобы построить маршрут.',
@@ -18,6 +19,7 @@ const translations = {
     musicOn:'Әуен ойнап тұр', musicOff:'Әуен өшірулі', scroll:'Төмен қарай сырғытыңыз',
     inviteKicker:'Құрметті туған-туыс, жақындарымыз', inviteTitle:'Сіздерді өміріміздегі ең әдемі күннің қуанышын бірге бөлісуге шақырамыз',
     inviteText:'Сіздердің қатысуларыңыз мерекемізді одан әрі жылы, жарқын әрі бақытты етеді.',
+    coupleKicker:'Екі тағдыр', coupleTitle:'Енді — бір жол', coupleText:'Осы күні біз бір-бірімізге қарай тағы бір маңызды қадам жасаймыз.', coupleScroll:'Сырғытыңыз — олар кездеседі',
     dateKicker:'Күнді белгілеп қойыңыз', dateTitle:'Қыркүйек 2026', timeLabel:'Басталуы', monthYear:'ҚЫРКҮЙЕК 2026',
     weekdays:['ДС','СС','СР','БС','ЖМ','СН','ЖС'], countKicker:'Кездесуге дейін', days:'күн', hours:'сағат', minutes:'минут', seconds:'секунд',
     placeKicker:'Өтетін орны', venue:'«Нур» тойханасы', placeNote:'Маршрут құру үшін өзіңізге ыңғайлы картаны ашыңыз.',
@@ -30,6 +32,7 @@ const translations = {
     musicOn:'Мусиқа янграмоқда', musicOff:'Мусиқа ўчирилган', scroll:'Пастга варақланг',
     inviteKicker:'Азиз яқинларимиз ва қадрдонларимиз', inviteTitle:'Сизни ҳаётимиздаги энг гўзал кун қувончини биз билан баҳам кўришга таклиф этамиз',
     inviteText:'Сизнинг ташрифингиз байрамимизни янада файзли, ёруғ ва унутилмас қилади.',
+    coupleKicker:'Икки тақдир', coupleTitle:'Энди — бир йўл', coupleText:'Бу кунда биз бир-биримиз сари яна бир муҳим қадам ташлаймиз.', coupleScroll:'Пастга варақланг — улар учрашади',
     dateKicker:'Санани белгилаб қўйинг', dateTitle:'Сентябрь 2026', timeLabel:'Бошланиши', monthYear:'СЕНТЯБРЬ 2026',
     weekdays:['ДШ','СШ','ЧШ','ПШ','ЖМ','ШН','ЯК'], countKicker:'Учрашувимизгача', days:'кун', hours:'соат', minutes:'дақиқа', seconds:'сония',
     placeKicker:'Ўтказилиш жойи', venue:'«Нур» тўйхонаси', placeNote:'Манзилга бориш учун ўзингизга қулай харитани очинг.',
@@ -174,3 +177,77 @@ const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIn
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 renderCalendar('ru');
+
+
+// Decorative falling autumn leaves. Kept intentionally light for mobile performance.
+(function createFallingLeaves(){
+  const layer=document.getElementById('fallingLeaves');
+  if(!layer) return;
+  const count=window.matchMedia('(max-width: 600px)').matches ? 9 : 15;
+  const frag=document.createDocumentFragment();
+  for(let i=0;i<count;i++){
+    const leaf=document.createElement('span');
+    leaf.className='fall-leaf leaf-tone-'+(i%5);
+    leaf.style.setProperty('--left', `${Math.random()*100}%`);
+    leaf.style.setProperty('--delay', `${(-Math.random()*14).toFixed(2)}s`);
+    leaf.style.setProperty('--duration', `${(10+Math.random()*9).toFixed(2)}s`);
+    const drift=-90+Math.random()*180;
+    leaf.style.setProperty('--drift', `${drift.toFixed(0)}px`);
+    leaf.style.setProperty('--drift-mid', `${(drift*.58).toFixed(0)}px`);
+    leaf.style.setProperty('--scale', `${(.55+Math.random()*.75).toFixed(2)}`);
+    leaf.style.setProperty('--turn', `${(300+Math.random()*720).toFixed(0)}deg`);
+    frag.appendChild(leaf);
+  }
+  layer.appendChild(frag);
+})();
+
+// Scroll-driven scene: the groom and bride enter from opposite sides and meet in the center.
+const coupleStory=document.getElementById('coupleStory');
+const groomFigure=document.getElementById('groomFigure');
+const brideFigure=document.getElementById('brideFigure');
+const coupleHeart=document.getElementById('coupleHeart');
+let coupleTicking=false;
+
+function clamp01(v){ return Math.max(0,Math.min(1,v)); }
+function easeInOut(t){ return t<.5 ? 2*t*t : 1-Math.pow(-2*t+2,2)/2; }
+
+function renderCoupleScene(){
+  coupleTicking=false;
+  if(!coupleStory || !groomFigure || !brideFigure) return;
+  const rect=coupleStory.getBoundingClientRect();
+  const travel=Math.max(1,rect.height-window.innerHeight);
+  const raw=clamp01((-rect.top)/travel);
+  const p=easeInOut(clamp01((raw-.08)/.76));
+  const vw=window.innerWidth;
+  const gw=groomFigure.getBoundingClientRect().width;
+  const bw=brideFigure.getBoundingClientRect().width;
+  const mobile=vw<=600;
+  const startGap=mobile ? vw*.62 : Math.min(vw*.46,560);
+  // Align the actual hands rather than the image-box edges.
+  const manTarget=-(gw*.93);
+  const brideTarget=-(bw*.149);
+  const manX=manTarget-startGap*(1-p);
+  const brideX=brideTarget+startGap*(1-p);
+  const lift=(1-p)*(mobile?18:28);
+  const scale=.94+.06*p;
+  groomFigure.style.transform=`translate3d(${manX}px,${lift}px,0) scale(${scale})`;
+  brideFigure.style.transform=`translate3d(${brideX}px,${lift}px,0) scale(${scale})`;
+  groomFigure.style.opacity=String(.38+.62*p);
+  brideFigure.style.opacity=String(.38+.62*p);
+  if(coupleHeart){
+    const hp=clamp01((p-.72)/.28);
+    coupleHeart.style.opacity=String(hp);
+    coupleHeart.style.transform=`translate(-50%,-50%) scale(${.55+.45*hp})`;
+  }
+  coupleStory.style.setProperty('--join-progress',p.toFixed(3));
+  const ground=coupleStory.querySelector('.couple-ground');
+  if(ground) ground.style.opacity=String(.2+.6*p);
+}
+function requestCoupleRender(){
+  if(coupleTicking) return;
+  coupleTicking=true;
+  requestAnimationFrame(renderCoupleScene);
+}
+window.addEventListener('scroll',requestCoupleRender,{passive:true});
+window.addEventListener('resize',requestCoupleRender,{passive:true});
+requestCoupleRender();

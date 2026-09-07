@@ -295,3 +295,196 @@ html[lang="kk"] .hero-quote,html[lang="kk"] .soft-card h3,html[lang="kk"] .soft-
     padding-right:22px;
   }
 }
+
+/* ===== Romantic falling leaves ===== */
+.falling-leaves{
+  position:fixed;
+  inset:0;
+  z-index:72;
+  overflow:hidden;
+  pointer-events:none;
+  contain:layout paint;
+}
+.fall-leaf{
+  position:absolute;
+  top:-12vh;
+  left:var(--left);
+  width:14px;
+  height:22px;
+  border-radius:85% 15% 80% 20%;
+  opacity:.46;
+  filter:drop-shadow(0 4px 5px rgba(92,69,51,.08));
+  transform-origin:45% 55%;
+  animation:leaf-fall var(--duration) linear var(--delay) infinite;
+  will-change:transform;
+}
+.fall-leaf::after{
+  content:"";
+  position:absolute;
+  width:1px;
+  height:75%;
+  left:50%;
+  top:13%;
+  background:rgba(113,84,66,.25);
+  transform:rotate(-18deg);
+  transform-origin:bottom;
+}
+.leaf-tone-0{background:linear-gradient(135deg,#d7b6a5,#aa786e)}
+.leaf-tone-1{background:linear-gradient(135deg,#e6cfad,#bd916c)}
+.leaf-tone-2{background:linear-gradient(135deg,#d9c2b6,#b98e88)}
+.leaf-tone-3{background:linear-gradient(135deg,#ead9c5,#c3a17d)}
+.leaf-tone-4{background:linear-gradient(135deg,#cda694,#9d7068)}
+@keyframes leaf-fall{
+  0%{transform:translate3d(0,-14vh,0) rotate(0deg) scale(var(--scale));opacity:0}
+  8%{opacity:.44}
+  52%{transform:translate3d(var(--drift-mid),52vh,0) rotate(280deg) scale(var(--scale))}
+  92%{opacity:.4}
+  100%{transform:translate3d(var(--drift),116vh,0) rotate(var(--turn)) scale(var(--scale));opacity:0}
+}
+
+/* ===== Scroll story: groom + bride meet ===== */
+.couple-story{
+  min-height:185svh;
+  display:block;
+  padding:0;
+  overflow:clip;
+  --join-progress:0;
+}
+.couple-story::before{
+  background:
+    radial-gradient(circle at 50% 34%,rgba(255,255,255,.86),rgba(255,255,255,.18) 43%,transparent 70%),
+    linear-gradient(rgba(248,244,238,.74),rgba(244,235,226,.9)),
+    url('assets/satin-bg.png') 58% center/cover fixed no-repeat;
+}
+.couple-story::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background:
+    radial-gradient(circle at 50% 72%,rgba(201,170,164,.16),transparent 31%),
+    linear-gradient(90deg,rgba(255,255,255,.18),transparent 26%,transparent 74%,rgba(255,255,255,.18));
+  pointer-events:none;
+}
+.couple-story>.couple-sticky{
+  position:sticky!important;
+  top:0;
+  height:100svh;
+  width:100%;
+  overflow:hidden;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  z-index:2;
+}
+.couple-copy{
+  position:absolute!important;
+  z-index:5!important;
+  top:clamp(72px,10vh,112px);
+  left:50%;
+  transform:translateX(-50%);
+  width:min(88vw,620px);
+  text-align:center;
+  pointer-events:none;
+}
+.couple-copy.reveal{transform:translate(-50%,24px)}
+.couple-copy.reveal.visible{transform:translate(-50%,0)}
+.couple-copy h3{
+  margin:0;
+  font:400 clamp(54px,9vw,88px)/.92 var(--script);
+  color:#846a65;
+}
+.couple-copy>p:last-child{
+  margin:18px auto 0;
+  max-width:500px;
+  font-family:var(--serif);
+  font-size:clamp(13px,2.3vw,17px);
+  line-height:1.8;
+  color:#746860;
+}
+.couple-stage{
+  position:absolute!important;
+  z-index:3!important;
+  inset:0;
+  pointer-events:none;
+}
+.couple-figure{
+  position:absolute;
+  left:50%;
+  bottom:-1.5vh;
+  height:min(69svh,690px);
+  width:auto;
+  max-width:none;
+  user-select:none;
+  -webkit-user-drag:none;
+  filter:drop-shadow(0 24px 24px rgba(68,53,44,.10));
+  will-change:transform,opacity;
+  transform-origin:bottom center;
+}
+.groom-figure{z-index:2}
+.bride-figure{z-index:3}
+.couple-ground{
+  position:absolute;
+  left:50%;
+  bottom:2.2vh;
+  width:min(82vw,720px);
+  height:42px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:radial-gradient(ellipse,rgba(100,78,63,.14),rgba(100,78,63,0) 68%);
+  filter:blur(7px);
+  opacity:.2;
+}
+.couple-heart{
+  position:absolute;
+  z-index:5;
+  left:52%;
+  bottom:33%;
+  color:#b98d87;
+  font-size:18px;
+  opacity:0;
+  transform:translate(-50%,-50%) scale(.55);
+  text-shadow:0 4px 18px rgba(154,108,101,.25);
+}
+.couple-scroll-hint{
+  position:absolute!important;
+  z-index:6!important;
+  left:50%;
+  bottom:max(20px,env(safe-area-inset-bottom));
+  transform:translateX(-50%);
+  white-space:nowrap;
+  font-size:9px;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+  color:#9b8d83;
+  opacity:calc(1 - var(--join-progress));
+}
+
+@media(max-width:760px){
+  .falling-leaves{z-index:71}
+  .fall-leaf{width:11px;height:18px;opacity:.38}
+  .couple-story{min-height:172svh}
+  .couple-copy{top:max(68px,calc(env(safe-area-inset-top) + 54px));width:min(88vw,520px)}
+  .couple-copy h3{font-size:clamp(49px,15vw,70px)}
+  .couple-copy>p:last-child{font-size:13px;line-height:1.65;max-width:330px}
+  .couple-figure{height:min(57svh,510px);bottom:2svh}
+  .couple-heart{bottom:44%;font-size:15px}
+  .couple-ground{bottom:3.8vh;width:88vw}
+}
+
+@media(max-width:430px){
+  .couple-story{min-height:165svh}
+  .couple-copy{top:max(62px,calc(env(safe-area-inset-top) + 48px));width:88vw}
+  .couple-copy .section-kicker{margin-bottom:10px}
+  .couple-copy h3{font-size:clamp(46px,15vw,62px)}
+  .couple-copy>p:last-child{margin-top:12px;max-width:300px}
+  .couple-figure{height:min(53svh,460px);bottom:4.5svh}
+  .couple-scroll-hint{font-size:8px;letter-spacing:.13em}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .falling-leaves{display:none}
+  .couple-story{min-height:100svh}
+  .couple-story>.couple-sticky{position:relative!important}
+  .couple-figure{opacity:1!important}
+}
