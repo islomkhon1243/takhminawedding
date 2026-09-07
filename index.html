@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#f6f0e8" />
+  <meta name="description" content="Свадебное приглашение — Тахмина & Дилмурат" />
+  <title>Тахмина & Дилмурат — 17.09.2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Manrope:wght@300;400;500;600&family=Noto+Serif:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="locked">
+  <audio id="bgMusic" loop preload="auto"></audio>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <section class="intro" id="intro" aria-label="Opening invitation">
+    <div class="intro-backdrop"></div>
+    <div class="envelope-wrap" id="envelopeWrap">
+      <button class="envelope" id="envelopeButton" type="button" aria-label="Открыть приглашение">
+        <span class="env-back"></span>
+        <span class="env-letter">
+          <span class="mini-kicker">17 · 09 · 2026</span>
+          <span class="mini-names">Тахмина<br>&amp; Дилмурат</span>
+          <span class="mini-line"></span>
+        </span>
+        <span class="env-left"></span>
+        <span class="env-right"></span>
+        <span class="env-bottom"></span>
+        <span class="env-flap"></span>
+        <span class="wax-seal">T<span>&amp;</span>D</span>
+      </button>
+      <p class="tap-hint" id="tapHint">Нажмите на конверт</p>
+    </div>
+
+    <div class="language-card" id="languageCard" aria-hidden="true">
+      <div class="language-inner">
+        <div class="petal-mark">✦</div>
+        <p class="lang-overline">Тілді таңдаңыз · Тилни танланг · Выберите язык</p>
+        <h1>Тахмина <span>&amp;</span> Дилмурат</h1>
+        <div class="language-buttons">
+          <button type="button" data-lang="uz">Ўзбекча</button>
+          <button type="button" data-lang="kz">Қазақша</button>
+          <button type="button" data-lang="ru">Русский</button>
+        </div>
+        <p class="lang-note">Музыка включится после выбора языка</p>
+      </div>
+    </div>
+  </section>
+
+  <main id="site" class="site" aria-hidden="true">
+    <div class="top-controls" id="topControls" aria-label="Настройки приглашения">
+      <button class="control-btn music-control" id="musicToggle" type="button" aria-label="Пауза / воспроизведение музыки" title="Музыка">
+        <span class="note-icon" aria-hidden="true">♪</span>
+        <span class="control-state" id="musicState" aria-hidden="true"></span>
+      </button>
+      <div class="language-control">
+        <button class="control-btn lang-control-btn" id="langToggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Сменить язык и музыку">
+          <span class="lang-short" id="langShort">РУС</span>
+        </button>
+        <div class="language-menu" id="languageMenu" role="menu" aria-hidden="true">
+          <button type="button" data-switch-lang="uz" role="menuitem">Ўзбекча</button>
+          <button type="button" data-switch-lang="kz" role="menuitem">Қазақша</button>
+          <button type="button" data-switch-lang="ru" role="menuitem">Русский</button>
+        </div>
+      </div>
+    </div>
+    <section class="hero section-shell">
+      <div class="hero-glow"></div>
+      <div class="hero-content reveal">
+        <p class="eyebrow" data-i18n="heroEyebrow">Свадебное приглашение</p>
+        <h2 class="names">Тахмина <span>&amp;</span> Дилмурат</h2>
+        <p class="hero-date" data-i18n="heroDate">17 сентября 2026</p>
+        <div class="fine-rule"></div>
+        <p class="hero-quote" data-i18n="heroQuote">Есть дни, которые хочется сохранить в сердце навсегда. Мы будем счастливы разделить этот день с вами.</p>
+
+      </div>
+      <div class="scroll-note" data-i18n="scroll">Листайте ниже</div>
+    </section>
+
+    <section class="message section-shell">
+      <div class="soft-card reveal">
+        <span class="ornament">❦</span>
+        <p class="section-kicker" data-i18n="inviteKicker">Дорогие родные и близкие</p>
+        <h3 data-i18n="inviteTitle">Приглашаем вас разделить с нами радость этого особенного дня</h3>
+        <p data-i18n="inviteText">Ваше присутствие сделает наш праздник ещё теплее, светлее и счастливее.</p>
+      </div>
+    </section>
+
+    <section class="date-section section-shell">
+      <div class="date-layout reveal">
+        <div class="date-copy">
+          <p class="section-kicker" data-i18n="dateKicker">Сохраните дату</p>
+          <h3 data-i18n="dateTitle">Октябрь 2026</h3>
+          <p class="date-big">17</p>
+          <p class="time-line"><span data-i18n="timeLabel">Начало</span> · 19:00</p>
+        </div>
+        <div class="calendar" aria-label="September 2026 calendar">
+          <div class="calendar-head" data-i18n="monthYear">СЕНТЯБРЬ 2026</div>
+          <div class="weekdays" id="weekdays"></div>
+          <div class="days" id="calendarDays"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="countdown-section section-shell">
+      <div class="reveal center-copy">
+        <p class="section-kicker" data-i18n="countKicker">До нашей встречи</p>
+        <div class="countdown" aria-live="polite">
+          <div><strong id="days">00</strong><span data-i18n="days">дней</span></div>
+          <div><strong id="hours">00</strong><span data-i18n="hours">часов</span></div>
+          <div><strong id="minutes">00</strong><span data-i18n="minutes">минут</span></div>
+          <div><strong id="seconds">00</strong><span data-i18n="seconds">секунд</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="place section-shell">
+      <div class="place-card reveal">
+        <div class="place-copy">
+          <p class="section-kicker" data-i18n="placeKicker">Место проведения</p>
+          <h3 data-i18n="venue">Тойхана «Нур»</h3>
+          <p class="time-large">19:00</p>
+          <p class="place-note" data-i18n="placeNote">Откройте удобную карту, чтобы построить маршрут.</p>
+          <div class="map-actions">
+            <a href="https://go.2gis.com/E1GSP" target="_blank" rel="noopener">2GIS</a>
+            <a href="https://maps.app.goo.gl/p561cBBPd6PMz1nu6" target="_blank" rel="noopener">Google Maps</a>
+          </div>
+        </div>
+        <div class="mini-map-wrap">
+          <iframe
+            title="Нур тойхана"
+            src="https://www.google.com/maps?q=%D0%9D%D1%83%D1%80%20%D1%82%D0%BE%D0%B9%D1%85%D0%B0%D0%BD%D0%B0&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="final section-shell">
+      <div class="final-inner reveal">
+        <span class="final-flower">✧</span>
+        <p class="section-kicker" data-i18n="finalKicker">С любовью</p>
+        <h3>Тахмина <span>&amp;</span> Дилмурат</h3>
+        <p data-i18n="finalText">Будем ждать вас в этот красивый осенний вечер.</p>
+        <div class="final-date">17 · 09 · 2026</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
